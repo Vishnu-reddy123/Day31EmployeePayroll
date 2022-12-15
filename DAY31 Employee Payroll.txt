@@ -1,0 +1,103 @@
+mysql> CREATE database payroll_service;
+Query OK, 1 row affected (0.10 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| addressbookservice |
+| cars               |
+| companydetails     |
+| information_schema |
+| mysql              |
+| payroll_service    |
+| performance_schema |
+| school             |
+| students           |
+| sys                |
++--------------------+
+10 rows in set (0.00 sec)
+mysql> USE payroll_service;
+Database changed
+---------------------------------------------------------------------------------------
+mysql> CREATE TABLE employee_payroll(
+    -> id int,
+    -> Name varchar(32),
+    -> Salary varchar(32),
+    -> StartDate varchar(32)
+    -> );
+Query OK, 0 rows affected (0.32 sec)
+--------------------------------------------------------------------------------
+mysql> INSERT INTO employee_payroll VALUES(1,'Vishnu','120000','2022-09-22'),(2,'Ramesh','130000','2022-10-21'),(3,'Suresh','2000000','2022-08-20');
+Query OK, 3 rows affected (0.09 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+---------------------------------------------------------------------------------
+mysql> SELECT * FROM employee_payroll;
++------+--------+---------+------------+
+| id   | Name   | Salary  | StartDate  |
++------+--------+---------+------------+
+|    1 | Vishnu | 120000  | 2022-09-22 |
+|    2 | Ramesh | 130000  | 2022-10-21 |
+|    3 | Suresh | 2000000 | 2022-08-20 |
++------+--------+---------+------------+
+3 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------
+
+mysql> SELECT Salary From employee_payroll WHERE Name = 'Vishnu';
++--------+
+| Salary |
++--------+
+| 120000 |
++--------+
+1 row in set (0.34 sec)
+----------------------------------------------------------------------------------------------------------------
+mysql> UPDATE employee_payroll SET Salary ='4000000' WHERE Name ='Ramesh' OR Name = 'Suresh';
+Query OK, 2 rows affected (0.10 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll;
++------+--------+---------+------------+
+| id   | Name   | Salary  | StartDate  |
++------+--------+---------+------------+
+|    1 | Vishnu | 120000  | 2022-09-22 |
+|    2 | Ramesh | 4000000 | 2022-10-21 |
+|    3 | Suresh | 4000000 | 2022-08-20 |
++------+--------+---------+------------+
+3 rows in set (0.00 sec)
+-----------------------------------------------------------------------------------------
+
+mysql> SELECT SUM(Salary) FROM employee_payroll;
++-------------+
+| SUM(Salary) |
++-------------+
+|     8120000 |
++-------------+
+1 row in set (0.06 sec)
+mysql> SELECT AVG(Salary) FROM employee_payroll;
++--------------------+
+| AVG(Salary)        |
++--------------------+
+| 2706666.6666666665 |
++--------------------+
+1 row in set (0.01 sec)
+mysql> SELECT MIN(Salary) FROM employee_payroll;
++-------------+
+| MIN(Salary) |
++-------------+
+| 120000      |
++-------------+
+1 row in set (0.06 sec)
+mysql> SELECT MAX(Salary) FROM employee_payroll;
++-------------+
+| MAX(Salary) |
++-------------+
+| 4000000     |
++-------------+
+1 row in set (0.00 sec)
+mysql> SELECT COUNT(Name) FROM employee_payroll;
++-------------+
+| COUNT(Name) |
++-------------+
+|           3 |
++-------------+
+1 row in set (0.00 sec)
